@@ -25,7 +25,7 @@ resource "google_sql_database_instance" "rails7" {
   deletion_protection  = "true"
 }
 
-resource "google_sql_database" "rails7_cloudrun_sample" {
+resource "google_sql_database" "rails7-cloudrun-sample" {
   name      = "rails7_cloudrun_sample"
   instance  = google_sql_database_instance.rails7.name
   charset   = "utf8mb4"
