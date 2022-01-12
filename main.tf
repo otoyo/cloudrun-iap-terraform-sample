@@ -25,7 +25,7 @@ resource "google_sql_database_instance" "rails7" {
   deletion_protection  = "true"
 }
 
-resource "google_sql_database" "rails7-cloudrun-sample" {
+resource "google_sql_database" "rails7-cloudrun-iap-sample" {
   name      = "rails7_cloudrun_sample"
   instance  = google_sql_database_instance.rails7.name
   charset   = "utf8mb4"
@@ -42,14 +42,14 @@ resource "google_sql_user" "rails7" {
 #
 # Cloud Run
 #
-resource "google_cloud_run_service" "rails7-cloudrun-sample" {
-  name     = "rails7-cloudrun-sample"
+resource "google_cloud_run_service" "rails7-cloudrun-iap-sample" {
+  name     = "rails7-cloudrun-iap-sample"
   location = "asia-northeast1"
 
   template {
     spec {
       containers {
-        image = "gcr.io/cloudrun-terraform-sample/rails7-cloudrun-sample"
+        image = "gcr.io/cloudrun-terraform-sample/rails7-cloudrun-iap-sample"
         env {
           name  = "RAILS_ENV"
           value = "production"
@@ -100,9 +100,9 @@ data "google_iam_policy" "noauth" {
 }
 
 resource "google_cloud_run_service_iam_policy" "noauth" {
-  location    = google_cloud_run_service.rails7-cloudrun-sample.location
-  project     = google_cloud_run_service.rails7-cloudrun-sample.project
-  service     = google_cloud_run_service.rails7-cloudrun-sample.name
+  location    = google_cloud_run_service.rails7-cloudrun-iap-sample.location
+  project     = google_cloud_run_service.rails7-cloudrun-iap-sample.project
+  service     = google_cloud_run_service.rails7-cloudrun-iap-sample.name
 
   policy_data = data.google_iam_policy.noauth.policy_data
 }
