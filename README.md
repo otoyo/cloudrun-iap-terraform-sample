@@ -1,6 +1,6 @@
-# cloudrun-terraform-sample
+# cloudrun-iap-terraform-sample
 
-Terraform sample for Cloud Run+Cloud SQL
+Terraform sample for Cloud Run+Cloud SQL with IAP
 
 ## Requirements
 
