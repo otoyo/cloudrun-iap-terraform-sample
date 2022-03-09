@@ -93,6 +93,12 @@ resource "google_cloud_run_service" "rails7-cloudrun-iap-sample" {
     }
   }
 
+  metadata {
+    annotations = {
+      "run.googleapis.com/ingress" = "internal-and-cloud-load-balancing"
+    }
+  }
+
   autogenerate_revision_name = true
 }
 
